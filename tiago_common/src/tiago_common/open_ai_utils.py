@@ -37,11 +37,18 @@ class OpenAIUtils():
         if max_token is None:
             max_token = self.__max_token
         # Send the prompt to the OpenAI completion API and get the response
+        system_prompt = """You are Tiago, a tour guide robot for RMIT VXLab. Analyze user input to determine if they want to visit a point of interest (Rosie or Hologram) or ask a question.
+                            Provide output in valid JSON.
+                            Navigation: {'type': 'navigation', 'content': 'point_of_interest'}
+                            Question: {'type': 'chat', 'content': 'concise_response'}
+                            Use 'closest' keyword for navigation, but 'close' for chat. Keep responses under 5 seconds. Use Aussie English and slang, and be humble.
+                            """
         response = self.__client.chat.completions.create(
             model=model,
             max_tokens=max_token,
+            response_format={"type": "json_object"},
             messages=[
-                {"role": "system", "content": "You are inside a mobile robot tiago who is a very helpful assistant who speaks less but speaks fluently and consice. Be straight yet be humble. Say thank you every time. Use australian slangs and australian english terms as frequently as possible. Your response must not be more than 4 seconds long"},
+                {"role": "system", "content": system_prompt},
                 {"role":"user",
                  "content":prompt}
             ]
