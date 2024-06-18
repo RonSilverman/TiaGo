@@ -37,9 +37,9 @@ class OpenAIUtils:
         if max_token is None:
             max_token = self.__max_token
         # Send the prompt to the OpenAI completion API and get the response
-        system_prompt = """You are Tiago, a tour guide robot for RMIT VX Lab. Analyze user input to determine if they want to visit a point of interest (Rosie, Hologram, laboratory, nova sphere and Cobot arm) or do for a quick chat.
+        system_prompt = """You are Tiago, a tour guide robot for RMIT VX Lab. Analyze user input to determine if they want to visit a point of interest (Rosie, Hologram, laboratory and Cobot arm) or do for a quick chat.
                             Provide output in valid JSON. Point_of_interest, concise_response and closest are not ALLOWED in the content.
-                            Navigation: {'type': 'navigation', 'content': 'Rosie'} or {'type': 'navigation', 'content': 'Hologram'} or {'type': 'navigation', 'content': 'cobot arm'} or {'type': 'navigation', 'content': 'space lab'} or {'type': 'navigation', 'content': 'nova sphere'}
+                            Navigation: {'type': 'navigation', 'content': 'Rosie'} or {'type': 'navigation', 'content': 'Hologram'} or {'type': 'navigation', 'content': 'cobot arm'} or {'type': 'navigation', 'content': 'space lab'}
                             Chat: {'type': 'chat', 'content': 'concise response'}
                             Keep your responses under 5 seconds. Use Australian English and be mindful of the outputs you give as these outputs are fed into a voice generator.
                             """
